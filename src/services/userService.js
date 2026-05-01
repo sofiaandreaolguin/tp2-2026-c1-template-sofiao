@@ -1,6 +1,6 @@
 import { findAllUsers, findByCredentials, registerUser } from "../data/userData.js";
-export function getUsers() {
-    return findAllUsers();        
+export async function getUsers() {
+    return await findAllUsers();        
 }
 
 export async function loginUserService(email, password) {
@@ -21,6 +21,7 @@ export async function registerUserService({name, email, password}) {
         if(error.message === 'El email ya está registrado') {
             throw error;
         }
+        console.log(error.message);
         throw new Error('Error al registrar el usuario');   
     }
 }

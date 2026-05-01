@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 
 export async function getAllUsers(req, res) {
     try {
-        res.json(getUsers());
+        res.json(await getUsers());
         
     } catch (error) {
         res.json({message: "Error al obtener usuarios", error: error.message});
