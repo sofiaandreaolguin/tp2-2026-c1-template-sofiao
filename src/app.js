@@ -3,6 +3,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import userRoutes from './routes/userRoutes.js';
+import productRouters from './routes/productRoutesSofi.js';
 
 const app = express();
 
@@ -12,7 +13,8 @@ app.use(cors());
 app.use(express.json());
 
 // Rutas
-app.use("/api/users", userRoutes);      
+app.use("/api/users", userRoutes);    
+app.use("/api/products", productRouters);  
 
 // Ruta base
 app.get('/', (req, res) => {

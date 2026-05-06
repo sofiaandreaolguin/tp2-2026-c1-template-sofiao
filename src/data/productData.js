@@ -12,4 +12,32 @@ const mockProducts = [
     { id: "11", name: "Memoria RAM Kingston 16GB DDR4", brand: "Kingston", category: "ram", price: 65000, stock: 25 },
     { id: "12", name: "SSD Samsung 970 EVO 1TB", brand: "Samsung", category: "almacenamiento", price: 140000, stock: 18 }
 ];
+export function findAllProducts() {
+    return mockProducts;
+}
+export function findProductById(id) {
+    return mockProducts.find(product => product.id === id);
+}
+export function insertProduct(product) {
+    const newProduct ={ id: mockProducts.length + 1, ...product} 
+    mockProducts.push(newProduct);
+    return newProduct;
+}
+export function replaceProduct(id, product) {
+    const index = mockProducts.findIndex(p => p.id === id);
+    if (index === -1) return null;
+    mockProducts[index] = { id, ...product };
+    return mockProducts[index];
+}
 
+export function deleteProduct(id) {
+    const index = mockProducts.findIndex(p => p.id === id);
+    if (index === -1) return null;
+
+    const deleted= mockProducts.splice(index, 1);
+    return deleted;
+}
+
+export function findAllByCategory(category) {
+    return mockProducts.filter(p => p.category.toLowerCase() === category.toLowerCase());
+}
