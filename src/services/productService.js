@@ -24,11 +24,11 @@ function validate(data) {
     }
 }
 
-export function getProducts(filters) {
-    return findAllProducts(filters);
+export async function getProducts(filters) {
+    return await findAllProducts(filters);
 }
 
-export function getProductById(id) {
+export async function getProductById(id) {
     const product = findProductById(id);
     if (!product) {
         const err = new Error("Producto no encontrado");
@@ -38,12 +38,12 @@ export function getProductById(id) {
     return product;
 }
 
-export function createProduct(data) {
+export async function createProduct(data) {
     validate(data);
     return insertProduct({ name: data.name.trim(), brand: data.brand, category: data.category, price: data.price, stock: data.stock });
 }
 
-export function updateProduct(id, data) {
+export async function updateProduct(id, data) {
     const existing = findProductById(id);
     if (!existing) {
         const err = new Error("Producto no encontrado");
@@ -54,7 +54,7 @@ export function updateProduct(id, data) {
     return replaceProduct(id, { name: data.name.trim(), brand: data.brand, category: data.category, price: data.price, stock: data.stock });
 }
 
-export function deleteProduct(id) {
+export async function deleteProduct(id) {
     const deleted = removeProduct(id);
     if (!deleted) {
         const err = new Error("Producto no encontrado");
